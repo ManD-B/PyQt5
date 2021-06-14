@@ -1,1 +1,2 @@
-# PyQt5
+# Pratice PyQt5
+2021-06-11~

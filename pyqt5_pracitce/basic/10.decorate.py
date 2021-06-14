@@ -1,8 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QPushButton, QWidget, QLabel, QVBoxLayout, QMainWindow
 
 
-class MyApp(QWidget):
+class MyApp(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -14,6 +14,7 @@ class MyApp(QWidget):
         lbl_green = QLabel('Green')
         lbl_blue = QLabel('Blue')
 
+  
         lbl_red.setStyleSheet("color: red;"
                              "border-style: solid;"
                              "border-width: 2px;"

@@ -1,0 +1,7 @@
+mainwindow에서 layout는 작동을 하지 않음
+layout은 오직 widget에서만 작동함
+-- 해결 --
+같이 사용하려면 QMainWindow 안의 def __init__(self)에
+wg = MyWidget()
+self.setCentralWidget(wg)
+이 두 줄을 입력해주면됌

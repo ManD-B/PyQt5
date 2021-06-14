@@ -1,0 +1,261 @@
+.setWindowTitle('My First Application') # 창 이름 설정
+.move(0, 0) # 창 위치 조정
+.size(0, 0) # 창 사이즈 조정
+.setGeometry(300, 300, 300, 200) # 창 위치, 창 사이즈 조정
+.setWindowIcon(QIcon('test.png')) # 아이콘 설정
+= QPushButton('Quit', self) # 누르는 버튼 생성
+.setCheckable(True) # 선택 상태 설정
+.toggle() # 버튼의 상태 변경(위 코드와 같이 사용)
+.setEnabled(False) # 버튼의 사용유무
+.clicked.connect(QCoreApplication.instance().quit) # 인스턴스 반환
+QToolTip.setFont(QFont('SansSerif', 10)) # 툴팁 폰트 및 사이즈 조정
+.setToolTip('This is a <b>QWidget</b> widget') # 툴팁 적용
+statusBar().showMessage('Ready') # 상태바
+= QAction(QIcon('exit.png'), 'Exit', self) # 아이콘과 라벨을 갖는 동작을 만듬
+.setShortcut('Ctrl+Q') # 단축키를 만듬
+.triggered.connect(qApp.quit) # quit() 메서드에 연결하여 종료
+= self.menuBar() 
+.setNativeMenuBar(False) # 메뉴바를 생성
+= menubar.addMenu('&File') # File메뉴를 만듬+F앞에 &로 인해 Alt+F 단축키
+.addAction(exitAction) # exitAction 이라는 앞에서 정의한 행동을 함
+= self.addToolBar('Exit') # 툴바를 생성
+.center() # 화면이 가운데 위치함
+= self.frameGeometry() # 창의 크기와 위치정보를 가져옴
+.moveCenter(cp) # 창의 직사각형 위치를 중심으로 이동
+.move(qr.topLeft()) # 현재 창을 화면의 중심으로 이동했던 직사각형 위치로 이동
+.currentDate() # 현재 날짜를 반환
+.toString(Qt.DefaultLocaleLongDate) # 현재 날짜를 문자열로 출력
+.currentTime() # 현재 시간을 반환
+= QLabel('Red') # 라벨 위젯을 만듬
+.setStyleSheet("color: red;"
+                       "border-style: solid;"
+                       "border-width: 2px;"
+                       "border-color: #FA8072;"
+                       "border-radius: 3px") # 글자색, 선종류, 두께, 경계선색, 모서리둥굴기 조정
+= QVBoxLayout() # 수직 박스를 만듬
+.addWidget(lbl_red) # 위젯을 배치
+= QHBoxLayout() # 수평 박스를 만듬
+.addStretch(1) # 신축성있는 빈공간을 제공(창을 늘리고 줄여도 그대로)
+= QGridLayout() # greedlayout을 만듬
+setLayout(grid) # 레이아웃을 설정
+.addWidget(QLabel('Title:'), 0, 0) # 위젯, 행, 열 번호를 입력
+.addWidget(QTextEdit(), 2, 1) # QLineEdit()와 다르게 여러줄의 텍스트를 수정가능
+.setAlignment(Qt.AlignVCenter) # 라벨의 배치를 설정
+= label1.font() # 라벨의 폰트를 정의
+.setFamily('Times New Roman') # 폰트 종류 설정
+.setPointSize(20) # 글자의 사이즈를 설정
+.setBold(True) # 진하게(on/off)
+= QCheckBox('Show title', self)  # 체크박스 생성
+.toggle() # 체크표시된 상태로 시작
+.stateChanged.connect(self.changeTitle) # 상태가 바뀔때 동작
+def changeTitle(self, state):
+    if state == Qt.Checked:
+        self.setWindowTitle('QCheckBox')
+    else:
+        self.setWindowTitle(' ') # 체크표시 상태에 따라 동작
+= QRadioButton('First Button', self) # radio버튼 생성
+.setChecked(True) # 실행될때 버튼 선택되어 표시
+.setText('Second Button') # 라벨의 텍스트 설정
+= QComboBox(self) # 콤보박스 생성
+.addItem('Option1') # 콤보박스 안에 들어가는 옵션
+.activated[str].connect(self.onActivated) # 옵션 선택시 실행
+def onActivated(self, text):
+    self.lbl.setText(text)
+    self.lbl.adjustSize() # 라벨의 크기 자동조정 및 선택한 항목을 라벨에 표시
+= QLineEdit(self) # Qlineedit위젯 생성
+.textChanged[str].connect(self.onChanged) # 텍스트가 바뀌면 메서드를 호출
+= QProgressBar(self) # 진행바를 생성
+= QBasicTimer() # 타이머 객체 생성
+def timerEvent(self, e):
+        if self.step >= 100:
+            self.timer.stop()
+            self.btn.setText('Finished')
+            return
+        self.step = self.step + 1
+        self.pbar.setValue(self.step)
+= QSlider(Qt.Horizontal, self) # 슬라이더 생성
+.setRange(0, 50)
+.setSingleStep(2) # 범위하고 스탭 설정
+= QDial(self) # 다이얼 위젯 생성
+.slider.valueChanged.connect(self.dial.setValue) # 서로 연동하여 동작하도록 설정
+= QSplitter(Qt.Horizontal)
+.addWidget(midleft) # 화면을 수평으로 쪼개고 위젯을 넣어줌
+= QGridLayout()
+.addWidget(self.createFirstExclusiveGroup(), 0, 0)
+.addWidget(self.createSecondExclusiveGroup(), 1, 0)
+.addWidget(self.createNonExclusiveGroup(), 0, 1)
+.addWidget(self.createPushButtonGroup(), 1, 1)
+.setLayout(grid) # 그룹박스의 위치를 상대적으로 나오게 만듬
+def createFirstExclusiveGroup(self):    
+    groupbox = QGroupBox('Exclusive Radio Buttons')
+    radio1 = QRadioButton('Radio1')
+    radio2 = QRadioButton('Radio2')
+    radio3 = QRadioButton('Radio3')
+    radio1.setChecked(True)
+    vbox = QVBoxLayout()
+    vbox.addWidget(radio1)
+    vbox.addWidget(radio2)
+    vbox.addWidget(radio3)
+    groupbox.setLayout(vbox)
+    return groupbox # 이런식으로 그룹박스 안에 각 항목을 배치
+= QWidget()
+= QTabWidget()
+.addTab(tab1, 'Tab1') # 위젯을 만들고 각 탭을 추가함
+= QVBoxLayout()
+.addWidget(tabs)
+.setLayout(vbox) # 레이아웃을 설정
+= QPixmap('landscape.jpg') # 이미지 파일을 객체로
+= QLabel()
+.setPixmap(pixmap) # 라벨을 만든 후 이미지를 표시하도록 설정
+= QLabel('Width: '+str(pixmap.width())+', Height: '+str(pixmap.height())) # 이미지의 너비, 높이 반환
+= QCalendarWidget(self) # 날짜 객체를 만듬
+.setGridVisible(True) # 날자 사이에 그리드가 표시됌
+.spinbox = QSpinBox() # 숫자가 올라가는 객체 SpinBox를 만듬
+.spinbox.setMinimum(-10)
+.spinbox.setMaximum(30) # 범위를 지정할 수 있음
+.dspinbox = QDoubleSpinBox() # 소수점까지 쓰이는 SpinBox를 만듬
+.dspinbox.setRange(0, 100)
+.dspinbox.setSingleStep(0.5) # 최소 최대 및 스텝을 조정
+.setPrefix('$ ') # 변수 앞에 $를 항상 나타내도록 고정
+.setDecimals(1) # 소수점을 나타낼 개수를 입력
+def value_changed(self):
+        self.lbl2.setText('$ ' + str(self.dspinbox.value())) # 값이 변결될 때 정의
+= QDateEdit(self) # 날짜 편집 위젯을 만듬
+.setDate(QDate.currentDate()) # 프로그램이 실행될 때 현재 날짜로 표시하도록 설정
+.setMinimumDate(QDate(1900, 1, 1))
+.setMaximumDate(QDate(2100, 12, 31)) # 각 값의 최대 최소값을 규정함
+.setDateRange(QDate(1900, 1, 1), QDate(2100, 12, 31)) # 위 두줄을 이 한줄로도 표현가능
+= QTimeEdit(self) # 시간 편집 위젯을 만듬
+.setTime(QTime.currentTime()) # 프로그램이 실행될 때 현재 시간으로 표시하도록 설정
+.setTimeRange(QTime(3, 00, 00), QTime(23, 30, 00)) # 시간의 범위를 설정
+.setDisplayFormat('hh:mm:ss') # 표시되는 형식을 설정
+= QDateTimeEdit(self) # 날짜+시간 위젯을 만듬
+.setDateTime(QDateTime.currentDateTime())
+.setDateTimeRange(QDateTime(1900, 1, 1, 00, 00, 00), QDateTime(2100, 1, 1, 00, 00, 00))
+.setDisplayFormat('yyyy.MM.dd hh:mm:ss')
+= QLineEdit() # 줄 편집기를 만듬
+.returnPressed.connect(self.append_text) # 엔터키를 누르면 메서드를 호출
+= QTextBrowser() # 텍스트 브라우저를 만듬
+.setAcceptRichText(True) # 서식있는 텍스트 사용이 가능하도록 함
+.setOpenExternalLinks(True) # 외부 링크로의 연결이 가능하도록 함
+def append_text(self):
+    text = self.le.text()
+    self.tb.append(text) # 줄 편집기를 텍스트 브라우저에 연결함
+    self.le.clear() # 텍스트가 텍스트 브라우저에 추가되면 줄편집기에 있던 텍스트를 지움
+# 글자 형식 연습
+# <b>Bold</b>
+# <i>Italic</i>
+# <p style="color: red">Red</p>
+# <p style="font-size: 20px">20px</p>
+# <a href="https://www.naver.com">Naver</a>
+.textChanged.connect(self.text_changed) # 텍스트가 수정될때마다 메서트 호출
+def text_changed(self):
+    text = self.te.toPlainText()
+    self.lbl2.setText('The number of words is ' + str(len(text.split())))
+    # split() 은 문자열의 단어들을 리스트 형태로 바꿔줌
+    # len(text.split())은 text의 단어수
+    # setText()를 이용하여 두 번째 라벨에 단어수를 표시
+= QTableWidget() # 테이블 위젯을 만듬
+.tableWidget.setRowCount(20) # 행의 개수를 지정
+.tableWidget.setColumnCount(4) # 열의 개수를 지정
+.setEditTriggers() # 메서드는 테이블의 항목을 편집 가능하도록 하는 액션을 지정
+.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers) # 편집불가
+.tableWidget.setEditTriggers(QAbstractItemView.DoubleClicked) # 칸 더블클릭식 편집 가능
+.tableWidget.setEditTriggers(QAbstractItemView.AllEditTriggers) # 모든 액션에 대해 편집 가능
+.horizontalHeader() # 수평 헤더를 반환
+.setSectionResizeMode() # 헤더의 크기를 조절 하는 방식을 지정
+.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+# 헤더의 폭이 위젯의 폭에 맞춰지도록 설정
+.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+# 헤더의 폭이 항목 값의 폭에 맞춰지도록 설정
+for i in range(20):
+    for j in range(4):
+        self.tableWidget.setItem(i, j, QTableWidgetItem(str(i+j)))
+# 순서대로 행, 열, 값을 입력
+def showDialog(self):
+    text, ok = QInputDialog.getText(self, 'Input Dialog', 'Enter your name:')
+    # 두 번째 매개변수는 대화창의 타이틀, 세 번쨰는 대화창 안에 보여질 메세지를 정의
+    if ok:
+        self.le.setText(str(text)) # 입력한 값을 줄 편집 위에 표시되도록 함
+= QColor(0, 0, 0) # 배경색을 만듬(검정)
+def showDialog(self):
+    col = QColorDialog.getColor() # 컬러 다이얼로그 창을 만듬
+    if col.isValid():
+    self.frm.setStyleSheet('QWidget { background-color: %s }' % col.name())
+    'OK'버튼 클릭시 col.is.Valid()의 불값이 참이고 반대면 False가 되어 선택한 색상이 프레임의 배경색이됌
+def showDialog(self):
+    font, ok = QFontDialog.getFont() # 폰트 다이얼로그 창을 만듬
+    if ok:
+    self.lbl.setFont(font) # 메서드를 사용하여 선택한 폰트를 라벨의 폰트로 설정
+def showDialog(self):
+    fname = QFileDialog.getOpenFileName(self, 'Open file', './') # 파일을 선택하는 다이얼로그 생성
+    if fname[0]:
+        f = open(fname[0], 'r')
+        with f:
+            data = f.read()
+            self.textEdit.setText(data) # 선택한 파일을 읽어서 텍스트 편집 위젯에 불러옴
+def closeEvent(self, event):
+    reply = QMessageBox.question(self, 'Message', 'Are you sure to quit?',
+                               QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+    if reply == QMessageBox.Yes:
+        event.accept()
+    else:
+        event.ignore()
+= QLCDNumber(self) # LCD 화면 생성
+def keyPressEvent(self, e):
+    if e.key() == Qt.Key_Escape:
+        self.close()
+    elif e.key() == Qt.Key_F:
+        self.showFullScreen()
+    elif e.key() == Qt.Key_N:
+        self.showNormal()
+# 버튼이벤트 - 누르면 해당 항목 실행
+.text = 'x: {0}, y: {1}'.format(x, y) # x, y 값을 저장
+.label = QLabel(self.text, self) # 라벨의 텍스트로 설정
+.label.move(20, 20) # 라벨의 시작위치를 설정
+.setMouseTracking(True) # 마우스의 위치를 트래킹
+def mouseMoveEvent(self, e):
+    x = e.x() # 위젯 안에서 이벤트가 발생했을 때 마우스 커서의 위치를 반환
+    y = e.y() # e.globalX(), e.globalY() 사용 시 화면 전체에서의 마우스 커서의 위치를 반환
+    text = 'x: {0}, y: {1}'.format(x, y)
+    self.label.setText(text)
+    self.label.adjustSize() # 라벨의 크기 자동 조정
+# e는 이벤트에 대한 정보를 갖고 있는 하나의 객체
+class Communicate(QObject):
+    closeApp = pyqtSignal() # 시그널을 만듬
+.c = Communicate()
+.c.closeApp.connect(self.close) # 위의 클래스를 close() 슬롯에 연결
+def mousePressEvent(self, e):
+    self.c.closeApp.emit() # 마우스를 클릭시 close 시그널이 방출
+def paintEvent(self, e):
+    qp = QPainter()
+    qp.begin(self)
+    self.draw_point(qp)
+    qp.end()
+def draw_point(self, qp):
+    qp.setPen(QPen(Qt.blue,  8)) # 점의 색깔, 크기 설정
+    qp.drawPoint(self.width()/2, self.height()/2) # 점의 위치 설정
+def draw_point(self, qp):
+    pen = QPen()
+    colors = ['#D83C5F', '#3CD88F', '#AA5CE3',
+                '#DF4A26', '#AE85F6', '#F7A82E',
+                '#406CF3', '#E9F229', '#29ACF2'] # 빨주노초파보
+    for i in range(1000):
+        pen.setWidth(np.random.randint(1, 15)) # 점의 넓이 1~15사이중 랜덤값으로 지정
+        pen.setColor(QColor(np.random.choice(colors))) # colors 안에 있는 색중 하나를 선택
+        qp.setPen(pen)
+        rand_x = 100 * np.random.randn()
+        rand_y = 100 * np.random.randn() # 좌표를 랜덤하게 설정
+        qp.drawPoint(self.width() / 2 + rand_x, self.height() / 2 + rand_y)
+def draw_line(self, qp):
+    qp.setPen(QPen(Qt.blue, 8, Qt.SolidLine)) # 색, 크기, 종류를 설정
+    qp.drawLine(30, 230, 200, 50) # 시작위치부터 종료위치까지를 지정
+# Qt.DashLine, Qt.DotLine, Qt.DashDotLine, Qt.DashDotDotLine, Qt.CustomDashLine 등의 종류가 있음
+def draw_rect(self, qp):
+    qp.setBrush(QColor(180, 100, 160)) # 면의 색
+    qp.setPen(QPen(QColor(60, 60, 60), 3)) # 선의 색, 두께 지정
+    qp.drawRect(20, 20, 100, 100) # 시작위치, 종료위치
+    brush = QBrush(QT.SolidPattern) # 면의 패턴 지정
+    qp.setBrush(brush) # 면의 색과 중첩이 안됌(패턴 or 색 중 하나만 가능)
+
+pyinstaller -w -F .py # 실행프로그램 제작(명령창, 파일 위치에서 실행)

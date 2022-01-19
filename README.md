@@ -6,16 +6,17 @@
 
 ## Installation
 - Essential installation
-'''sh
+```sh
  - pip install pyqt5
-'''
+```
 
 - Selective installation
-'''sh
+```sh
  - pip install numpy
  - pip install pandas
  - pip install kivy
  - pip install yautogui
-'''
+```
+
 
 🌜👌👨‍🎨 

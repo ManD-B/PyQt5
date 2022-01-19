@@ -18,7 +18,9 @@ class MyApp(QWidget):
     def paintEvent(self, e):
         qp = QPainter()
         qp.begin(self)
-        self.draw_line(qp)
+        qp.setPen(QPen(Qt.black, 3, Qt.SolidLine))
+        qp.drawLine(20, 20, 380, 20)
+        qp.drawText(30, 40, 'Qt.SolidLine')
         qp.end()
 
     # def draw_line(self, qp):
@@ -29,32 +31,30 @@ class MyApp(QWidget):
     #     qp.setPen(QPen(Qt.red, 16))
     #     qp.drawLine(330, 250, 40, 190)
 
-    def draw_line(self, qp):
-        qp.setPen(QPen(Qt.black, 3, Qt.SolidLine))
-        qp.drawLine(20, 20, 380, 20)
-        qp.drawText(30, 40, 'Qt.SolidLine')
+    # def draw_line(self, qp):
 
-        qp.setPen(QPen(Qt.black, 3, Qt.DashLine))
-        qp.drawLine(20, 70, 380, 70)
-        qp.drawText(30, 90, 'Qt.DashLine')
 
-        qp.setPen(QPen(Qt.black, 3, Qt.DotLine))
-        qp.drawLine(20, 120, 380, 120)
-        qp.drawText(30, 140, 'Qt.DotLine')
+    #     qp.setPen(QPen(Qt.black, 3, Qt.DashLine))
+    #     qp.drawLine(20, 70, 380, 70)
+    #     qp.drawText(30, 90, 'Qt.DashLine')
 
-        qp.setPen(QPen(Qt.black, 3, Qt.DashDotLine))
-        qp.drawLine(20, 170, 380, 170)
-        qp.drawText(30, 190, 'Qt.DashDotLine')
+    #     qp.setPen(QPen(Qt.black, 3, Qt.DotLine))
+    #     qp.drawLine(20, 120, 380, 120)
+    #     qp.drawText(30, 140, 'Qt.DotLine')
 
-        qp.setPen(QPen(Qt.black, 3, Qt.DashDotDotLine))
-        qp.drawLine(20, 220, 380, 220)
-        qp.drawText(30, 240, 'Qt.DashDotDotLine')
+    #     qp.setPen(QPen(Qt.black, 3, Qt.DashDotLine))
+    #     qp.drawLine(20, 170, 380, 170)
+    #     qp.drawText(30, 190, 'Qt.DashDotLine')
 
-        pen = QPen(Qt.black, 3, Qt.CustomDashLine)
-        pen.setDashPattern([4, 3, 2, 5])
-        qp.setPen(pen)
-        qp.drawLine(20, 270, 380, 270)
-        qp.drawText(30, 290, 'Qt.CustomDashLine')
+    #     qp.setPen(QPen(Qt.black, 3, Qt.DashDotDotLine))
+    #     qp.drawLine(20, 220, 380, 220)
+    #     qp.drawText(30, 240, 'Qt.DashDotDotLine')
+
+    #     pen = QPen(Qt.black, 3, Qt.CustomDashLine)
+    #     pen.setDashPattern([4, 3, 2, 5])
+    #     qp.setPen(pen)
+    #     qp.drawLine(20, 270, 380, 270)
+    #     qp.drawText(30, 290, 'Qt.CustomDashLine')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

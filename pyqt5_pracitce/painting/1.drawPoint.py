@@ -24,10 +24,6 @@ class MyApp(QWidget):
     def draw_point(self, qp):
         qp.setPen(QPen(Qt.blue,  8))
         qp.drawPoint(self.width()/2, self.height()/2)
-
-    def draw_point(self, qp):
-        qp.setPen(QPen(Qt.blue,  8))
-        qp.drawPoint(self.width()/2, self.height()/2)
         qp.setPen(QPen(Qt.green, 12))
         qp.drawPoint(self.width()/4, 3*self.height()/4)
         qp.setPen(QPen(Qt.red, 16))

@@ -11,7 +11,7 @@ class MyApp(QWidget):
 
   def initUI(self):
       self.setWindowTitle('Icon')
-      self.setWindowIcon(QIcon('test.png')) # 왜안나오지;;
+      self.setWindowIcon(QIcon('img/test.png'))
       # self.move(300, 200) # 왼쪽위로부터 창이 떨어진 길이 조정
       # self.resize(1000, 200) # 가로 세로 길이 조정
       self.setGeometry(300, 300, 300, 200) # 위의 두 코드를 합친것과 같은역할

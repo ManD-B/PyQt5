@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout
 
 
 class MyApp(QWidget):
@@ -19,7 +19,7 @@ class MyApp(QWidget):
         btn3 = QPushButton('Button3', self)
         btn3.setEnabled(False)
 
-        vbox = QVBoxLayout()
+        vbox = QHBoxLayout()
         vbox.addWidget(btn1)
         vbox.addWidget(btn2)
         vbox.addWidget(btn3)

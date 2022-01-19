@@ -44,3 +44,10 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
     sys.exit(app.exec_())
+
+# <b>Bold</b>
+# <i>Italic</i>
+# <p style="color: red">Red</p>
+# <p style="font-size: 20px">20px</p>
+# <a href="https://www.naver.com">Naver</a>
+# 이런 형식으로 쓰임

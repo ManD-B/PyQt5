@@ -24,7 +24,7 @@ class MyApp(QWidget):
 
         self.setLayout(vbox)
 
-        self.setWindowTitle('QCalendarWidget')
+        self.setWindowTitle('일자 선택')
         self.setGeometry(300, 300, 400, 300)
         self.show()
 

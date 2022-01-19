@@ -18,7 +18,7 @@ class MyApp(QMainWindow):
         self.c = Communicate()
         self.c.closeApp.connect(self.close)
 
-        self.setWindowTitle('Emitting Signal')
+        self.setWindowTitle('Emitting sSignal')
         self.setGeometry(300, 300, 300, 200)
         self.show()
 

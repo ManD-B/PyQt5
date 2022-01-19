@@ -1,3 +1,4 @@
+
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
 from PyQt5.QtGui import QPixmap
@@ -11,7 +12,7 @@ class MyApp(QWidget):
         self.initUI()
 
     def initUI(self):
-        pixmap = QPixmap('icon.jpg')
+        pixmap = QPixmap('img/icon.jpg')
 
         lbl_img = QLabel()
         lbl_img.setPixmap(pixmap)

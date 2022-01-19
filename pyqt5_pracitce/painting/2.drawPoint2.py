@@ -24,8 +24,8 @@ class MyApp(QWidget):
     def draw_point(self, qp):
         pen = QPen()
         colors = ['#D83C5F', '#3CD88F', '#AA5CE3',
-                  '#DF4A26', '#AE85F6', '#F7A82E',
-                  '#406CF3', '#E9F229', '#29ACF2'] # 빨주노초파보
+                    '#DF4A26', '#AE85F6', '#F7A82E',
+                    '#406CF3', '#E9F229', '#29ACF2'] # 빨주노초파보
         for i in range(1000):
             pen.setWidth(np.random.randint(1, 15))
             pen.setColor(QColor(np.random.choice(colors)))

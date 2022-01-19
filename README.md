@@ -3,7 +3,6 @@
 
 - ✨ Completely styled UI, including all controls
 
-
 ## Installation
 - Essential installation
 ```sh
@@ -18,5 +17,5 @@
  - pip install yautogui
 ```
 
-
+* the is the first readme_file that I styled
 🌜👌👨‍🎨 

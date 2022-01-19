@@ -1,5 +1,5 @@
 # Pratice PyQt5
-##2021-06-11~2022-01-19
+## 2021-06-11~2022-01-19
 
 - ✨ Completely styled UI, including all controls
 
